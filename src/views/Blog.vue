@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/img/logo.png">
-    <h1>This is an home page</h1>
-    <h2>{{ msg }}</h2>
+  <div class="blog">
+    <h1>This is an blog page</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum dicta voluptatibus sit sapiente beatae quisquam inventore temporibus voluptatem neque accusamus cumque optio ipsa, dignissimos saepe commodi totam cum vitae consectetur?</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum dicta voluptatibus sit sapiente beatae quisquam inventore temporibus voluptatem neque accusamus cumque optio ipsa, dignissimos saepe commodi totam cum vitae consectetur?</p>
     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum dicta voluptatibus sit sapiente beatae quisquam inventore temporibus voluptatem neque accusamus cumque optio ipsa, dignissimos saepe commodi totam cum vitae consectetur?</p>
   </div>
 </template>
@@ -13,7 +13,7 @@ import axios from 'axios';
 
 
 export default {
-  name: 'home',
+  name: 'blog',
   components: {
 
   },
