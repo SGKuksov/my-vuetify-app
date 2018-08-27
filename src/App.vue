@@ -2,9 +2,9 @@
   <div id="app">
     <ul class="f-nav" id="nav">
       <li v-for="(item, index) in links"
-          :key="item.id"
-          :class="{active : activeIndex === index }"
-          @click="activeIndex = index">
+          :key="index"
+          :class="{active : activeUrl === item.url }"
+          @click="activeUrl = item.url">
         <router-link :to="item.url">{{ item.content }}</router-link>
       </li>
     </ul>
@@ -23,17 +23,14 @@ export default {
         {url: '/about', content: 'About'},
         {url: '/blog', content: 'Blog'},
       ],
-      items: [
-        {id: '1', content: 'Кнопка 1'},
-        {id: '2', content: 'Кнопка 2'}
-      ],
-      activeIndex: 0,
+      activeUrl: '',
     }
   },
   methods: {
-    toggleActive() {
-      this.index
-    }
+
+  },
+  mounted() {
+    this.activeUrl = window.location.pathname
   }
 }
 </script>
