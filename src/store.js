@@ -1,30 +1,36 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // https://medium.com/fullstackio/managing-state-in-vue-js-23a0352b1c87
-    // State is simply an object that contains the properties that need to be shared within the application
-    numbers: [1, 2, 3]
-  },
-  mutations: {
-    // Mutations are functions responsible in directly mutating store state. 
-    ADD_NUMBER(state, payload) {
-      state.numbers.push(payload);
-    }
+    info: '',
+    message: ''
   },
   actions: {
-    // Actions are also responsible in performing any or all asynchronous calls prior to committing to mutations
-    addNumber(context, number) {
-      context.commit("ADD_NUMBER", number);
+    LOAD_DATA({ commit }) {
+      axios
+        .get('https://picsum.photos/list')
+        .then(response => {
+          commit('GET_DATA', response.data)
+        })
+        .catch(error => window.console.log(error)); // обработка ошибок
+    },
+  },
+  mutations: {
+    GET_DATA: (state, info) => {
+      state.info = info
+    },
+    updateMessage (state, message) {
+      state.message = message
     }
   },
   getters: {
-    // Getters are to a Vuex store what computed properties are to a Vue component. Getters are primarily used to perform some calculation/manipulation to store state before having that information accessible to components.
-    getNumbers(state) {
-      return state.numbers;
-    }
+
+  },
+  modules: {
+    // The modules object provides a way to split your store in multiple stores, but allow them to all remain part of the store tree.
   },
 });

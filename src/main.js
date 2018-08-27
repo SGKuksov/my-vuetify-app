@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
-
 import svg4everybody from 'svg4everybody';
 svg4everybody();
 
-// инлайнинг svg, пример: background: svg-load('../img/svg/example.svg', fill=#fff, stroke=#f00);
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
