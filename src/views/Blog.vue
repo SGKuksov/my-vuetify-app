@@ -4,6 +4,8 @@
 
     {{ displayPost.length }}
 
+    <pagination :current="currentPage" @page-changed="getPost()"></pagination>
+
     <div class="posts">
       <post-item
         v-for="post in displayPost"
@@ -18,17 +20,20 @@
 
 <script>
 import PostItem from '@/components/PostItem.vue'
+import pagination from '@/components/pagination.vue'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'blog',
   components: {
-    PostItem 
+    PostItem,
+    pagination 
   },
   data () {
     return {
       countLikes: 100,
-      someTitle: 'Lorem Ipsum'
+      someTitle: 'Lorem Ipsum',
+      currentPage: 1
     }
   },
   methods: {
