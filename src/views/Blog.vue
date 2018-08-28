@@ -1,44 +1,62 @@
 <template>
   <div class="blog">
     <h1>This is an blog page</h1>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum dicta voluptatibus sit sapiente beatae quisquam inventore temporibus voluptatem neque accusamus cumque optio ipsa, dignissimos saepe commodi totam cum vitae consectetur?</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum dicta voluptatibus sit sapiente beatae quisquam inventore temporibus voluptatem neque accusamus cumque optio ipsa, dignissimos saepe commodi totam cum vitae consectetur?</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum dicta voluptatibus sit sapiente beatae quisquam inventore temporibus voluptatem neque accusamus cumque optio ipsa, dignissimos saepe commodi totam cum vitae consectetur?</p>
+
+    {{ displayPost.length }}
+
+    <div class="posts">
+      <post-item
+        v-for="post in displayPost"
+        :key="post.id"
+        msg="Welcome to Your Vue.js App"       
+        :title="post.title"                     
+        :likes="countLikes"></post-item>
+    </div>
+
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-// import _ from 'lodash'
-
+import PostItem from '@/components/PostItem.vue'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'blog',
   components: {
-
+    PostItem 
   },
   data () {
     return {
-      info: null,
-      msg: 'Welcome to Your Vue.js App'
+      countLikes: 100,
+      someTitle: 'Lorem Ipsum'
     }
   },
-  mounted() {
-    axios
-      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      .then(response => (this.info = response.data.bpi))
-      // .catch(error => console.log(error)); // обработка ошибок
+  methods: {
+    ...mapActions({
+      getPost: 'LOAD_POST'
+    }),
+  },
+
+  computed: {
+    displayPost () {
+      return this.$store.state.posts
+    },
   },
   created() {
-    // console.log(this.$_.isEmpty(null));
-  }
+    this.getPost()
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .home {
+  .blog {
     width: 80%;
     margin: 0 auto;
+  }
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 100px;
   }
 </style>

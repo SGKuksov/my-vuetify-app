@@ -7,27 +7,37 @@
     <input v-model="message">
     <p>{{ message }}</p>
 
-    <ul class="grid">
+    <!-- <ul class="grid">
+      <li class="grid__item post"
+          v-for="post in displayPost"
+          :key="post.id">
+        <img src="https://picsum.photos/150/150/?random" width="150" height="150" alt="post.title">
+
+        <div class="post__info">
+          <h2>{{ post.title }}</h2>
+          <span>{{ post.userId }}</span>
+          <span>{{ post.id }}</span>
+          <p>{{ post.body }}</p>
+        </div>
+      </li>
+    </ul> -->
+
+    <!-- <ul class="grid">
       <li class="grid__item"
-          v-for="item in filtereditems"
+          v-for="item in displayInfo"
           :key="item.id">
         <article>
           <img src="https://picsum.photos/300/200?image=10" alt="">
-          <!-- <p>width: {{item.width}} </p>
-          <p>height: {{item.height}} </p> -->
-          <!-- <p>filename: {{item.filename}} </p> -->
-          <!-- <p>id: {{item.id}} </p> -->
+          <p>width: {{item.width}} </p>
+          <p>height: {{item.height}} </p>
+          <p>filename: {{item.filename}} </p>
+          <p>id: {{item.id}} </p>
           <p>author: {{item.author}} </p>
-          <!-- <p>author_url: {{item.author_url}} </p>
-          <p>post_url: {{item.post_url}} </p> -->
-          <!-- {{item,searchQuery}} -->
+          <p>author_url: {{item.author_url}} </p>
+          <p>post_url: {{item.post_url}} </p>
         </article>
       </li>
-    </ul>
-
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum dicta voluptatibus sit sapiente beatae quisquam inventore temporibus voluptatem neque accusamus cumque optio ipsa, dignissimos saepe commodi totam cum vitae consectetur?</p>
-
-
+    </ul> -->
 
     <div class="grid">
       <b-card :title="item.title"
@@ -85,11 +95,6 @@ export default {
     displayInfo () {
       return this.$store.state.info
     },
-    filtereditems: function(){
-        return this.displayInfo.filter((item) => {
-            return item.author.match(this.search);
-        });
-    }
   },
   methods: {
     ...mapActions({
@@ -104,6 +109,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+  * {
+    box-sizing: border-box;
+  }
   .home {
     width: 80%;
     margin: 0 auto;
@@ -116,8 +124,25 @@ export default {
     &__item {
       list-style: none;
       margin: 25px;
+
     }
 
+  }
+  .post {
+    display: flex;
+    border: 1px solid #000;
+    width: 100%;
+    margin: 5px;
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+
+    &__info {
+      flex: 1;
+      padding: 10px;
+    }
   }
   article {
     margin-right: 10px;
